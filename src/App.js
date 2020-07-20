@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import Formulario from "./component/formulario";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor(){
+    super();
+
+    this.state = {
+        users: []
+    }
+}
+
+  componentDidMount(){
+    let url = 'https://academlo-api-users.herokuapp.com/users'
+    fetch(url)
+    .then(respuesta => respuesta.json())
+    .then(resultado => this.setState({users: resultado.data}))
+    .catch(error => console.log(error))
+  }
+  
+
+  render(){
+    return (
+      <div className="App">
+        
+        <Formulario usersData={this.state.users}/>
+  
+      </div>
+    );
+  }
+  
 }
 
 export default App;

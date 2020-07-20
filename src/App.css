@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.containerForm{
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: rgba(51, 189, 124, 0.815);
+}
+
+.containerCard{
+  display: inline-block;
+  padding: 20px;
+  background-color: rgba(94, 160, 235, 0.918);
+  margin: 10px;
+  width: 25%;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.card{
+
+}
