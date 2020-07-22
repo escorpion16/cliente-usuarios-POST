@@ -5,8 +5,6 @@ class Formulario extends React.Component{
         super(props);
 
         this.state = {}
-
-        
     }
 
     addUser = (event) => {
@@ -18,7 +16,21 @@ class Formulario extends React.Component{
             headers:{'Content-Type': "application/json; charset=UTF-8"}
         })
         .then(respuesta => respuesta.json())
-        .then(resultado => console.log(resultado))
+        .then(resultado => {
+            console.log(resultado)
+            this.props.obtenerUsuariosFn()
+        })
+        .catch(error => console.log(error))
+    }
+
+    deleteUser = (idUser) => {
+        //let idUser = event.target.id;
+        let url = "https://academlo-api-users.herokuapp.com/user/"+idUser;
+        fetch(url,{
+            method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(myJson => this.props.obtenerUsuariosFn())
         .catch(error => console.log(error))
     }
 
@@ -41,17 +53,19 @@ class Formulario extends React.Component{
                     </form>
                 </div>
                 
-                {this.props.usersData.map((dato) => {
+                {this.props.usersData.map((dato,index) => {
                     return (
-                        <div className="containerCard">
-                            <div >
-                                <div >
-                                    <h2>{dato.name}</h2>
-                                    <h2>{dato.lastname}</h2>
-                                    <h4>{dato.email}</h4>
-                                </div>
+                        
+                        <div key={dato.id} className="containerCard">
+                            <h2>{dato.name}</h2>
+                            <h2>{dato.lastname}</h2>
+                            <h4>{dato.email}</h4>
+                            <div className="buttonsCard">
+                                <button>Editar</button>
+                                <button id={dato.id} onClick={() => this.deleteUser(dato.id)}>Eliminar</button>
                             </div>
                         </div>
+                        
                     );
                 })}
             </div>
