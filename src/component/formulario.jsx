@@ -23,16 +23,7 @@ class Formulario extends React.Component{
         .catch(error => console.log(error))
     }
 
-    deleteUser = (idUser) => {
-        //let idUser = event.target.id;
-        let url = "https://academlo-api-users.herokuapp.com/user/"+idUser;
-        fetch(url,{
-            method: 'DELETE',
-        })
-        .then(response => response.json())
-        .then(myJson => this.props.obtenerUsuariosFn())
-        .catch(error => console.log(error))
-    }
+    
 
     handleInput = (event) => {
         
@@ -53,21 +44,7 @@ class Formulario extends React.Component{
                     </form>
                 </div>
                 
-                {this.props.usersData.map((dato,index) => {
-                    return (
-                        
-                        <div key={dato.id} className="containerCard">
-                            <h2>{dato.name}</h2>
-                            <h2>{dato.lastname}</h2>
-                            <h4>{dato.email}</h4>
-                            <div className="buttonsCard">
-                                <button>Editar</button>
-                                <button id={dato.id} onClick={() => this.deleteUser(dato.id)}>Eliminar</button>
-                            </div>
-                        </div>
-                        
-                    );
-                })}
+                
             </div>
         </div>);
     }

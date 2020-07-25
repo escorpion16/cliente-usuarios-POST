@@ -1,6 +1,7 @@
 import React from 'react';
 import Formulario from "./component/formulario";
 import './App.css';
+import Card from "./component/card";
 
 
 class App extends React.Component {
@@ -38,7 +39,7 @@ class App extends React.Component {
       <div className="App">
         
         <Formulario usersData={this.state.users} obtenerUsuariosFn={this.obtenerUsuarios} eliminarUsuariosFn={this.eliminarUsuarios}/>
-  
+        <Card usersData={this.state.users} obtenerUsuariosFn={this.obtenerUsuarios} eliminarUsuariosFn={this.eliminarUsuarios}/>
       </div>
     );
   }
