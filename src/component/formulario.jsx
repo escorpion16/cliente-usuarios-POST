@@ -34,13 +34,14 @@ class Formulario extends React.Component{
         return (
         <div>
             <div>
-                <div className="containerForm">
+                <div className="form">
                     <form onInput={this.handleInput} onSubmit={this.addUser.bind(this)}>
+                        <h2>REGISTRO</h2>
                         <input name="name" type="text" placeholder="nombre"/>
                         <input name="lastname" type="text" placeholder="apellido"/>
                         <input name="email" type="text" placeholder="email"/>
                         <input name="password"  type="password" placeholder="contraseña"/>
-                        <input value="Enviar Datos" type="submit" />
+                        <input value="Enviar Datos" type="submit" className="btn-form"/>
                     </form>
                 </div>
                 

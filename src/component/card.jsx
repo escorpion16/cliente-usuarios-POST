@@ -3,6 +3,7 @@ import React from "react";
 class Card extends React.Component{
     constructor(){
         super();
+        this.state = {}
 
     }
 
@@ -23,12 +24,12 @@ class Card extends React.Component{
             {this.props.usersData.map((dato) => {
                     return (
                         
-                        <div key={dato.id} className="containerCard">
+                        <div key={dato.id} className="card">
                             <h2>{dato.name}</h2>
                             <h2>{dato.lastname}</h2>
                             <h4>{dato.email}</h4>
                             <div className="buttonsCard">
-                                <button>Editar</button>
+                                <button onClick={() => this.props.editarUsuario(dato)}>Editar</button>
                                 <button id={dato.id} onClick={() => this.deleteUser(dato.id)}>Eliminar</button>
                             </div>
                         </div>

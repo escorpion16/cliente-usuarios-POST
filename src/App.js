@@ -2,6 +2,8 @@ import React from 'react';
 import Formulario from "./component/formulario";
 import './App.css';
 import Card from "./component/card";
+import EditForm from "./component/editForm";
+
 
 
 class App extends React.Component {
@@ -9,7 +11,13 @@ class App extends React.Component {
     super();
 
     this.state = {
-        users: []
+        users: [],
+        userEdited: {
+          name:'',
+          lastname:'',
+          email:'',
+          password:''
+        } 
     }
 }
 
@@ -34,12 +42,62 @@ class App extends React.Component {
     .catch(error => console.log(error))
   }
 
+  editarUsuario = (e) => {
+
+    this.setState({
+      userEdited: e
+    })
+  }
+  
+
+  handleInputEdit = (event) => {
+    this.setState({
+      userEdited: {...this.state.userEdited,[event.target.name]: event.target.value}
+    })
+
+  }
+
+  actualizarUsuario = (e) => {
+    e.preventDefault();
+    const id = this.state.userEdited.id;
+    let url = ' https://academlo-api-users.herokuapp.com/user/'+id;
+    
+    fetch(url,{
+      method: 'PUT',
+      headers: {'Content-type': 'application/json; charset=UTF-8'},
+      body: JSON.stringify(
+        this.state.userEdited)
+
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log(result)
+      this.obtenerUsuarios();
+    })
+    .catch(error => console.log(error))
+    
+  }
+  
   render(){
     return (
       <div className="App">
+        <div className="containerForms">
+          <Formulario usersData={this.state.users} obtenerUsuariosFn={this.obtenerUsuarios} eliminarUsuariosFn={this.eliminarUsuarios}/>
+          <EditForm 
+            actualizarUsuario={this.actualizarUsuario}
+            user={this.state.userEdited}
+            handleInputEdit={this.handleInputEdit}
+          />
+        </div>
         
-        <Formulario usersData={this.state.users} obtenerUsuariosFn={this.obtenerUsuarios} eliminarUsuariosFn={this.eliminarUsuarios}/>
-        <Card usersData={this.state.users} obtenerUsuariosFn={this.obtenerUsuarios} eliminarUsuariosFn={this.eliminarUsuarios}/>
+        <div className="cardContainer">
+          <Card 
+            editarUsuario={this.editarUsuario}
+            usersData={this.state.users} 
+            obtenerUsuariosFn={this.obtenerUsuarios} 
+            eliminarUsuariosFn={this.eliminarUsuarios}
+          />
+        </div>
       </div>
     );
   }

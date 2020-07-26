@@ -1,17 +1,55 @@
 import React from 'react';
-​
-export default function EditForm (props){
-    const {name, lastname, email, password} = props.user;
+
+
+export default class EditForm extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {}
+    }
+    render(){
+        
     return (
-        <div>
-            <h2>Editar un usuario</h2>
-            <form onSubmit={props.updateUser} onInput={props.editInput}>
-            <input name="name" type="text" placeholder="Nombre" value={name}  />
-            <input name="lastname" type="text" placeholder="Apellidos" value={lastname} />
-            <input name="email" type="email" placeholder="Email" value={email}  />
-            <input name="password" type="password" placeholder="Contraseña" value={password} />
-            <input type="submit" value="Actualizar usuario" />
+        <div className="form">
+
+            <form >
+                <h2>EDITAR USUARIO</h2>
+                <input 
+                    name="name" 
+                    type="text" 
+                    placeholder="Nombre"
+                    onChange={this.props.handleInputEdit}
+                    value={this.props.user.name}  
+                />
+                <input 
+                    name="lastname" 
+                    type="text" 
+                    placeholder="Apellidos"  
+                    onChange={this.props.handleInputEdit}
+                    value={this.props.user.lastname}
+                />
+                <input 
+                    name="email" 
+                    type="email" 
+                    placeholder="Email"   
+                    onChange={this.props.handleInputEdit}
+                    value={this.props.user.email}
+                />
+                <input 
+                    name="password" 
+                    type="password" 
+                    placeholder="Contraseña"  
+                    onChange={this.props.handleInputEdit}
+                    value={this.props.user.password}
+                />
+                <input 
+                    type="submit" 
+                    value="Actualizar usuario" 
+                    className="btn-form"
+                    onClick={this.props.actualizarUsuario}
+                />
             </form>
         </div>
     )
+    }
+    
 }

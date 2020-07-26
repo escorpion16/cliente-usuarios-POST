@@ -1,28 +1,79 @@
+:root{
+  --cl0: hsl(0,80%,98%);
+  --cl1: hsl(0,80%,50%);
+  --cl2: hsl(0,80%,40%);
+}
+
 .App {
   text-align: center;
-}
-
-.containerForm{
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 20vh;
-  background-color: rgba(51, 189, 124, 0.815);
 }
 
-.containerCard{
+.form form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.form form input{
+  padding: 7px 20px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.form form h2{
+  color: #fff;
+}
+
+.form form .btn-form{
+  margin-top: 10px;
+  padding: 10px;
+  background: var(--cl2);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.cardContainer{
+  height: 100vh;
+  overflow: auto;
+}
+
+.card{
   display: inline-block;
-  padding: 20px;
-  background-color: rgba(94, 160, 235, 0.918);
+  padding: 10px 30px;
+  background-color: var(--cl2);
   margin: 10px;
   width: 20%;
+  min-width: 170px;
   border-radius: 5px;
-  
 }
 
+.card h2, .card h4{
+  color: var(--cl0);
+}
 .buttonsCard{
   display: flex;
   justify-content: space-around;
-  
 }
 
+.buttonsCard button{
+  background: var(--cl1);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  color: #fff;
+  font-weight: bolder;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.containerForms{
+  height: 100vh;
+  padding-bottom: 20px;
+  background-color: var(--cl1);
+  width: 30vw;
+  padding: 0px 50px;
+}
